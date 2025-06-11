@@ -13,6 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 import lombok.AllArgsConstructor;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
+import software.amazon.awssdk.services.s3.model.HeadObjectRequest;
+import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
@@ -49,6 +52,25 @@ public class AwsService {
 			}
 		}catch (IOException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured while uploading the file to AWS-s3");
+		}
+	}
+	
+	public Boolean deleteImageFile(String fileName) {
+		HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
+		        .bucket(bucketName)
+		        .key(fileName)
+		        .build();
+
+		try {
+		    s3Client.headObject(headObjectRequest); // will throw if not found
+		    s3Client.deleteObject(DeleteObjectRequest.builder()
+		        .bucket(bucketName)
+		        .key(fileName)
+		        .build());
+		    return true;
+		} catch (NoSuchKeyException e) {
+		    System.out.println("File not found in S3: " + fileName);
+		    return false;
 		}
 	}
 

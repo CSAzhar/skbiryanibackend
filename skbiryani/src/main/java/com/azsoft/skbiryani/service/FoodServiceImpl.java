@@ -1,8 +1,8 @@
 package com.azsoft.skbiryani.service;
 
-import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +36,33 @@ public class FoodServiceImpl implements FoodService{
 		FoodResponse foodResponse = foodMapper.foodEntityToFoodResponse(savedFood);
 		
 		return foodResponse;
+	}
+
+	@Override
+	public List<FoodResponse> getAllFood() {
+		return foodRepository.findAll().stream()
+				.map(foodMapper::foodEntityToFoodResponse)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public FoodResponse getFoodById(Long foodId) {
+		return foodMapper.foodEntityToFoodResponse(foodRepository.findById(foodId).
+								orElseThrow( ()-> new RuntimeException("Food not found for this id") ));
+	}
+
+	@Override
+	public Boolean deleteFoodById(Long foodId) {
+		FoodEntity foodEntity = foodRepository.findById(foodId).orElseThrow( () -> new RuntimeException("No food item found") );
+		if(foodEntity != null) {
+			String imageUrl = foodEntity.getImageUrl();
+			Boolean isImageDeletedFromS3 = awsService.deleteImageFile( imageUrl.substring(imageUrl.lastIndexOf("/")+1) );
+			if(isImageDeletedFromS3) {
+				foodRepository.deleteById(foodId);
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

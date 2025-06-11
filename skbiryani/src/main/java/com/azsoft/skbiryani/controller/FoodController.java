@@ -1,8 +1,13 @@
 package com.azsoft.skbiryani.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +29,24 @@ public class FoodController {
 	
 	private FoodServiceImpl foodService;
 	
-	@PostMapping("/save-food")
+	@PostMapping("save-food")
 	public ResponseEntity<FoodResponse> saveFood(@ModelAttribute FoodRequest foodRequest, @RequestPart("file") MultipartFile file){
 		return ResponseEntity.ok().body(foodService.addFood(foodRequest, file));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<FoodResponse>> getAllFoods(){
+		return ResponseEntity.ok().body(foodService.getAllFood());
+	}
+	
+	@GetMapping("{foodId}")
+	public ResponseEntity<FoodResponse> getFoodById(@PathVariable("foodId") Long id){
+		return ResponseEntity.ok().body(foodService.getFoodById(id));
+	}
+	
+	@DeleteMapping("{foodId}")
+	public ResponseEntity<Boolean> deleteFoodById(@PathVariable("foodId") Long foodId){
+		return ResponseEntity.ok().body(foodService.deleteFoodById(foodId));
 	}
 
 }
