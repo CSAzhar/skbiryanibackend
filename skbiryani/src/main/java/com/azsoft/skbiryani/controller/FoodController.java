@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -47,6 +48,11 @@ public class FoodController {
 	@DeleteMapping("{foodId}")
 	public ResponseEntity<Boolean> deleteFoodById(@PathVariable("foodId") Long foodId){
 		return ResponseEntity.ok().body(foodService.deleteFoodById(foodId));
+	}
+	
+	@PutMapping
+	public ResponseEntity<FoodResponse> updateFoodById(@ModelAttribute FoodRequest foodRequest, @RequestPart("file") MultipartFile file){
+		return ResponseEntity.ok().body(foodService.updateFood(foodRequest, file));
 	}
 
 }

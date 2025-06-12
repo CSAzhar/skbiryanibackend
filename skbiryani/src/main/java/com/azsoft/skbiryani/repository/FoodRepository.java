@@ -7,5 +7,5 @@ import com.azsoft.skbiryani.entity.FoodEntity;
 
 @Repository
 public interface FoodRepository extends JpaRepository<FoodEntity, Long>{
-
+	FoodEntity findByName(String name);
 }
