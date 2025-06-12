@@ -14,6 +14,6 @@ public interface FoodService {
 	List<FoodResponse> getAllFood();
 	FoodResponse getFoodById(Long foodId);
 	Boolean deleteFoodById(Long foodId);
-	FoodResponse updateFood(FoodRequest foodRequest, MultipartFile file);
+	FoodResponse updateFood(Long foodId, FoodRequest foodRequest, MultipartFile file);
 
 }
