@@ -1,5 +1,7 @@
 package com.azsoft.skbiryani.io;
 
+import com.azsoft.skbiryani.entity.Category;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,7 +14,8 @@ public class FoodResponse {
 	private String description;
 	private String imageUrl;
 	private double price;
-	private String category;
+	private Category category;
+	private Boolean isAvailable;
 	
 	private int statusCode;
     private String message;

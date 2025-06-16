@@ -10,10 +10,10 @@ import com.azsoft.skbiryani.io.FoodResponse;
 public interface FoodService {
 	
 //	String uploadFile(MultipartFile file);
-	FoodResponse addFood(FoodRequest foodRequest, MultipartFile file);
+	FoodResponse addFood(FoodRequest foodRequest, MultipartFile file, Long categoryId);
 	List<FoodResponse> getAllFood();
 	FoodResponse getFoodById(Long foodId);
 	Boolean deleteFoodById(Long foodId);
-	FoodResponse updateFood(Long foodId, FoodRequest foodRequest, MultipartFile file);
+	FoodResponse updateFood(Long foodId, FoodRequest foodRequest, MultipartFile file, Long categoryId);
 
 }

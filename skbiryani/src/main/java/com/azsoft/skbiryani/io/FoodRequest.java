@@ -11,7 +11,7 @@ public class FoodRequest {
 	private String name;
 	private String description;
 	private double price;
-	private String category;
+	private Long categoryId;
 	
 
 }

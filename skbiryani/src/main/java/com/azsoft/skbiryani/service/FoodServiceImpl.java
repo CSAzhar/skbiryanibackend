@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.azsoft.skbiryani.config.AwsService;
+import com.azsoft.skbiryani.entity.Category;
 import com.azsoft.skbiryani.entity.FoodEntity;
 import com.azsoft.skbiryani.io.FoodRequest;
 import com.azsoft.skbiryani.io.FoodResponse;
 import com.azsoft.skbiryani.mapper.FoodMapper;
+import com.azsoft.skbiryani.repository.CategoryRepository;
 import com.azsoft.skbiryani.repository.FoodRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class FoodServiceImpl implements FoodService{
 	
 	private final AwsService awsService;
 	private final FoodRepository foodRepository;
+	private final CategoryRepository categoryRepository;
 	private final FoodMapper foodMapper;
 
 //    FoodServiceImpl(S3Client s3Client) {
@@ -30,13 +33,16 @@ public class FoodServiceImpl implements FoodService{
 //    }
 
 	@Override
-	public FoodResponse addFood(FoodRequest foodRequest, MultipartFile file) {
+	public FoodResponse addFood(FoodRequest foodRequest, MultipartFile file, Long categoryId) {
 		
 		String imageUrl= awsService.uploadImage(file);
 		
-		FoodEntity foodEntity = foodMapper.foodRequestToFoodEntity(foodRequest);
+		Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("No category found"));
+		
+		FoodEntity foodEntity = foodMapper.foodRequestToFoodEntity(foodRequest, category);
 		foodEntity.setImageUrl(imageUrl);
 		
+
 		FoodEntity savedFood = foodRepository.save(foodEntity);
 		
 		FoodResponse foodResponse = foodMapper.foodEntityToFoodResponse(savedFood);
@@ -74,7 +80,7 @@ public class FoodServiceImpl implements FoodService{
 	}
 
 	@Override
-	public FoodResponse updateFood(Long foodId, FoodRequest foodRequest, MultipartFile file) {
+	public FoodResponse updateFood(Long foodId, FoodRequest foodRequest, MultipartFile file, Long categoryId) {
 		FoodEntity oldFood = foodRepository.findById(foodId).orElseThrow( () -> new RuntimeException("food does not exists") );
 		String newImageUrl;
 		if(file != null && !file.isEmpty()) {
@@ -84,8 +90,10 @@ public class FoodServiceImpl implements FoodService{
 			if(isImageDeleted) oldFood.setImageUrl(newImageUrl);
 			
 		}
+		Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("No category found"));
+		
 		oldFood.setName(foodRequest.getName());
-		oldFood.setCategory(foodRequest.getCategory());
+		oldFood.setCategory(category);
 		oldFood.setDescription(foodRequest.getDescription());
 		oldFood.setPrice(foodRequest.getPrice());
 		
@@ -94,6 +102,7 @@ public class FoodServiceImpl implements FoodService{
 		return foodMapper.foodEntityToFoodResponse(newFood);
 		
 	}
+
 	
 	
 

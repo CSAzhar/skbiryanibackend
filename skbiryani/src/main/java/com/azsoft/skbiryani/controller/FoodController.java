@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +31,12 @@ public class FoodController {
 	private FoodServiceImpl foodService;
 	
 	@PostMapping
-	public ResponseEntity<FoodResponse> saveFood(@ModelAttribute FoodRequest foodRequest, @RequestPart("file") MultipartFile file){
-		return ResponseEntity.ok().body(foodService.addFood(foodRequest, file));
+	public ResponseEntity<FoodResponse> saveFood(
+													@ModelAttribute FoodRequest foodRequest,
+													@RequestPart("file") MultipartFile file,
+													@RequestParam("categoryId") Long categoryId
+													){
+		return ResponseEntity.ok().body(foodService.addFood(foodRequest, file, categoryId));
 	}
 	
 	@GetMapping
@@ -51,11 +56,12 @@ public class FoodController {
 	
 	@PutMapping("/{foodId}")
 	public ResponseEntity<FoodResponse> updateFoodById(
-														@PathVariable("foodId") Long foodId,
+														@PathVariable Long foodId,
 														@ModelAttribute FoodRequest foodRequest, 
-														@RequestPart("file") MultipartFile file)
+														@RequestPart("file") MultipartFile file,
+														@RequestParam Long categoryId)
 	{
-		return ResponseEntity.ok().body(foodService.updateFood(foodId, foodRequest, file));
+		return ResponseEntity.ok().body(foodService.updateFood(foodId, foodRequest, file, categoryId));
 	}
 	
 
