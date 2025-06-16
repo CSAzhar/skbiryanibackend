@@ -13,5 +13,8 @@ public class FoodResponse {
 	private String imageUrl;
 	private double price;
 	private String category;
+	
+	private int statusCode;
+    private String message;
 
 }

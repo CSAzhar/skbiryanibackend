@@ -40,6 +40,8 @@ public class FoodServiceImpl implements FoodService{
 		FoodEntity savedFood = foodRepository.save(foodEntity);
 		
 		FoodResponse foodResponse = foodMapper.foodEntityToFoodResponse(savedFood);
+		foodResponse.setStatusCode(200);
+		foodResponse.setMessage("successful");
 		
 		return foodResponse;
 	}
