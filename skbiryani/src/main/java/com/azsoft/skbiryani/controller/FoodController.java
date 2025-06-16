@@ -64,5 +64,15 @@ public class FoodController {
 		return ResponseEntity.ok().body(foodService.updateFood(foodId, foodRequest, file, categoryId));
 	}
 	
+	@GetMapping("livefoods")
+	public ResponseEntity<List<FoodResponse>> getActiveFoods(){
+		return ResponseEntity.ok().body(foodService.getAllActiveFoods());
+	}
+	
+	@PostMapping("livefoods/{foodId}")
+	public ResponseEntity<Boolean> toggleLiveFood(@PathVariable Long foodId){
+		return ResponseEntity.ok().body(foodService.toggleActiveFood(foodId));
+	}
+	
 
 }

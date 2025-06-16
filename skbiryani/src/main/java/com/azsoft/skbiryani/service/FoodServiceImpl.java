@@ -103,6 +103,22 @@ public class FoodServiceImpl implements FoodService{
 		
 	}
 
+	@Override
+	public List<FoodResponse> getAllActiveFoods() {
+		return foodRepository.findByIsAvailableTrue()
+				.stream()
+				.map(foodMapper::foodEntityToFoodResponse)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Boolean toggleActiveFood(Long foodId) {
+		FoodEntity entity = foodRepository.findById(foodId).orElseThrow(()-> new RuntimeException("No food available"));
+		entity.setAvailable(!entity.isAvailable());
+		foodRepository.save(entity);
+		return true;
+	}
+
 	
 	
 

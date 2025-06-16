@@ -16,7 +16,7 @@ public class FoodMapper {
 				.description(foodRequest.getDescription())
 				.price(foodRequest.getPrice())
 				.category(category)
-				.isAvailable(false)
+				.isAvailable(true)
 				.build();
 	}
 	
