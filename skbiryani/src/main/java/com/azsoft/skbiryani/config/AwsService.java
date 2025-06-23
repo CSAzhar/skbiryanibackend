@@ -43,7 +43,7 @@ public class AwsService {
 			PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 					.bucket(bucketName)
 					.key(key)
-					.acl("public-read")
+//					.acl("public-read")
 					.contentType(file.getContentType())
 					.build();
 			PutObjectResponse response = s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
