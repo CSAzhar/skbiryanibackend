@@ -7,5 +7,5 @@ public interface IUserService {
 
 	ResponseUserCreate registerUser(UserCreateRequest userCreateRequest);
 	
-	String findByUserIdByEmail(String email);
+	Long findByUserId();
 }

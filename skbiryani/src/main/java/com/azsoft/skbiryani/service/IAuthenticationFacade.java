@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 
 public interface IAuthenticationFacade {
 	
-	Authentication authentication();
+	Authentication getAuthentication();
+	
 
 }

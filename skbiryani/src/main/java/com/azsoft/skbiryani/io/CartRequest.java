@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CartRequest {
 	
-	private Long userId;
-	private Map<String, Integer> items = new HashMap<>();
+	private Long foodId;
 	
 
 }

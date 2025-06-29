@@ -1,5 +1,7 @@
 package com.azsoft.skbiryani.service;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.azsoft.skbiryani.entity.UserEntity;
@@ -16,6 +18,7 @@ public class UserServiceImpl implements IUserService{
 	
 	private final UserRepository userRepository;
 	private final UserEntityMapper userMapper;
+	private final IAuthenticationFacade authenticationFacade;
 	
 	
 	@Override
@@ -29,9 +32,15 @@ public class UserServiceImpl implements IUserService{
 
 
 	@Override
-	public String findByUserIdByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long findByUserId() {
+		String loggedInUserEmail = authenticationFacade.getAuthentication().getName();
+		return userRepository.findByEmail(loggedInUserEmail)
+							.orElseThrow(() -> new UsernameNotFoundException("username not dound"))
+							.getUserId();
+		
 	}
+
+
+	
 
 }

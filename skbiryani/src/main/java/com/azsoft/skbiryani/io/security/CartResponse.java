@@ -16,7 +16,10 @@ public class CartResponse {
 	
 	private Long id;
 	private Long userId;
-	private Map<String, Integer> items = new HashMap<>();
+	private Map<Long, Integer> items = new HashMap<>();
+	
+	private Integer statusCode;
+	private String message;
 	
 
 }
