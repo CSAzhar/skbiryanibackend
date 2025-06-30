@@ -7,5 +7,6 @@ public interface ICartService {
 	
 	CartResponse addToCart(CartRequest cartRequest);
 	CartResponse removeToCart(CartRequest cartRequest);
-
+	CartResponse getCart();
+	CartResponse clearCart();
 }

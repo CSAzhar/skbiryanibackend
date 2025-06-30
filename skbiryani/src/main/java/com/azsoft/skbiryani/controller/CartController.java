@@ -3,6 +3,8 @@ package com.azsoft.skbiryani.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,4 +33,30 @@ public class CartController {
 		CartResponse cartResponse = cartService.removeToCart(cartRequest);
 		return ResponseEntity.status(cartResponse.getStatusCode()).body(cartResponse);
 	}
+	
+	@GetMapping
+	public ResponseEntity<CartResponse> getCart(){
+		CartResponse response = cartService.getCart();
+		return ResponseEntity.status(response.getStatusCode()).body(response);
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<CartResponse> clearcart(){
+		CartResponse response = cartService.clearCart();
+		return ResponseEntity.status(response.getStatusCode()).body(response);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

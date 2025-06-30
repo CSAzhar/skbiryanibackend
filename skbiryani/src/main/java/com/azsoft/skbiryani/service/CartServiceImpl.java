@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.azsoft.skbiryani.entity.CartEntity;
+import com.azsoft.skbiryani.exception.CartNotAvailableException;
 import com.azsoft.skbiryani.io.CartRequest;
 import com.azsoft.skbiryani.io.security.CartResponse;
 import com.azsoft.skbiryani.repository.CartRepository;
@@ -27,21 +28,19 @@ public class CartServiceImpl implements ICartService{
 		Long foodId = cartRequest.getFoodId();
 		
 		try {
-			System.out.println("========1======");
+			
 			Long loggedInUserId = userService.findByUserId();
-			System.out.println("========2======");
+		
 			Optional<CartEntity> cartOptional = cartRepository.findByUserId(loggedInUserId);
-			System.out.println("========3======");
+		
 			CartEntity cartEntity =  cartOptional.orElseGet(() -> new CartEntity(loggedInUserId, new HashMap<>()));
-			System.out.println("========4======");
+	
 			Map<Long, Integer> cartItem = cartEntity.getItems();
-			System.out.println("========5======");
+		
 			cartItem.put(foodId, cartItem.getOrDefault(foodId, 0)+1);
-			System.out.println("========6======");
+
 			cartEntity.setItems(cartItem);
-			System.out.println("========7======");
 			CartEntity savedCart  = cartRepository.save(cartEntity);
-			System.out.println("========8======");
 			cartResponse.setId(savedCart.getCartId());
 			cartResponse.setUserId(savedCart.getUserId());
 			cartResponse.setItems(savedCart.getItems());
@@ -107,4 +106,61 @@ public class CartServiceImpl implements ICartService{
 		
 	}
 
+	@Override
+	public CartResponse getCart() {
+		CartResponse cartResponse = new CartResponse();
+		try {
+			Long loggedInUSerId = userService.findByUserId();
+			CartEntity cartEntity = cartRepository.findByUserId(loggedInUSerId).orElseThrow(()-> new CartNotAvailableException("No Cart is Available"));
+			
+			cartResponse.setId(cartEntity.getCartId());
+			cartResponse.setUserId(loggedInUSerId);
+			cartResponse.setItems(cartEntity.getItems());
+			
+			cartResponse.setStatusCode(200);
+			cartResponse.setMessage("successful");
+			return cartResponse;
+		}catch (CartNotAvailableException e) {
+			cartResponse.setStatusCode(400);
+			cartResponse.setMessage("Cart Not created:"+e.getMessage());
+			return cartResponse;
+		}
+		catch (Exception e) {
+			cartResponse.setStatusCode(500);
+			cartResponse.setMessage("failed to load cart:"+e.getMessage());
+			return cartResponse;
+		}
+	}
+
+	@Override
+	public CartResponse clearCart() {
+		CartResponse cartResponse = new CartResponse();
+		try {
+			Long loggedInUserId = userService.findByUserId();
+			cartRepository.deleteByUserId(loggedInUserId);
+			
+			cartResponse.setStatusCode(200);
+			cartResponse.setMessage("successful");
+			
+			return cartResponse;
+		}catch (Exception e) {
+			cartResponse.setStatusCode(400);
+			cartResponse.setMessage("Error occured while clearing cart:"+e.getMessage());
+			
+			return cartResponse;
+		}
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

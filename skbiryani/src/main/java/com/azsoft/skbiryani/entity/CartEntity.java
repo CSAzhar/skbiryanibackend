@@ -35,7 +35,7 @@ public class CartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
     
-
+	
     private Long userId;
     
     @ElementCollection
