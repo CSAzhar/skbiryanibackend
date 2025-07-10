@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,16 @@ import com.azsoft.skbiryani.utils.JwtUtil;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/skb/user")
+@RequestMapping("/skb/user/")
 @AllArgsConstructor
+@CrossOrigin
 public class AuthController {
 	
 	private final AuthenticationManager authenticationManager;
 	private final AppUserDetailService userDetailService;
 	private final JwtUtil jwtUtil;
 	
-	@PostMapping("/login-email")
+	@PostMapping("login-email")
 	public ResponseEntity<ResponseAuthenticationEmail> loginMail(@RequestBody AuthenticationRequestEmail requestEmail){
 		System.out.println("con -1");
 		authenticationManager
@@ -42,12 +44,12 @@ public class AuthController {
 				.build());
 	}
 	
-	@PostMapping("/login-getotp")
+	@PostMapping("login-getotp")
 	public ResponseEntity<?> getMobileOtp(){
 		return null;
 	}
 	
-	@PostMapping("/login-otp")
+	@PostMapping("login-otp")
 	public ResponseEntity<?> loginOtp(){
 		return null;
 	}
