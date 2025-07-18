@@ -41,6 +41,7 @@ public class OrderServiceImpl implements IOrderService{
 	public OrderResponse createMethodWithPayment(OrderRequest orderRequest) {
 		
 		try {
+			orderRequest.setAmount(orderRequest.getAmount());
 			
 			OrderEntity newOrder = orderMapper.orderRequestToOrderEntity(orderRequest);
 			newOrder = orderRepository.save(newOrder);
@@ -72,11 +73,13 @@ public class OrderServiceImpl implements IOrderService{
 			OrderResponse orderResponse = new OrderResponse();
 			orderResponse.setStatusCode(401);
 			orderResponse.setMessage("failed :"+e.getMessage());
+			System.out.println("failed razorpay:"+e.getMessage());
 			return orderResponse;
 		} catch (Exception e) {
 			OrderResponse orderResponse = new OrderResponse();
 			orderResponse.setStatusCode(401);
 			orderResponse.setMessage("failed from server:"+e.getMessage());
+			System.out.println("failed server:"+e.getMessage());
 			return orderResponse;
 		}
 		

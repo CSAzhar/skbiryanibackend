@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -44,8 +45,10 @@ public class SecurityConfig {
 															 "skb/user/login-otp",
 															 "skb/user/login-getotp",
 															  "skb/food/**",
-															  "skb/category/**")
-											.permitAll()
+															  "skb/category/**",
+															  "/skb/order/all-admin"
+															  ).permitAll()
+											.requestMatchers(HttpMethod.PATCH, "/skb/order/*").permitAll()
 											.anyRequest()
 											.authenticated())
 		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
