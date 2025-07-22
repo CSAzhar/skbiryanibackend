@@ -74,7 +74,11 @@ public class SecurityConfig {
 	private UrlBasedCorsConfigurationSource corsConfigurationSource() {
 		
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(List.of("http://localhost:5173" ,"http://localhost:3000"));
+		config.setAllowedOrigins(List.of("http://localhost:5173" ,
+											"http://localhost:3000", 
+											"https://skbadmin.s3.us-east-1.amazonaws.com",
+											"https://skbuser.s3.us-east-1.amazonaws.com"
+											));
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 		config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 		config.setAllowCredentials(true);
