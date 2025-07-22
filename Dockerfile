@@ -1,4 +1,4 @@
-FROM public.ecr.aws/amazoncorretto/amazoncorretto:21-alpine3.18
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
 WORKDIR /app
 COPY ./target/skbiryani.jar /app
 EXPOSE 8002
