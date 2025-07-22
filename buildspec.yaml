@@ -1,31 +1,44 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto21   # ✅ Use AWS CodeBuild's Corretto 21 runtime
+    commands:
+      - echo "✅ Install phase - Using Java version:"
+      - java -version
+      - mvn -v
 
   pre_build:
     commands:
-      - echo "✅ Pre-build phase - Maven clean install"
+      - set -e
+      - echo "✅ Pre-build phase - Maven clean install (skipping tests)"
       - mvn clean install -DskipTests
       - echo "✅ Logging in to Amazon ECR..."
       - aws --version
+      # Replace this with your ECR repository URI
       - REPOSITORY_URI=836515410440.dkr.ecr.us-east-1.amazonaws.com/skbiryani-springboot-registry
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+      # Create tags
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
 
   build:
     commands:
+      - set -e
       - echo "✅ Build phase - Building Docker image..."
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
+      - set -e
       - echo "✅ Post-build phase - Pushing Docker images..."
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "✅ Writing imagedefinitions.json..."
-      - DOCKER_CONTAINER_NAME=skbiryani-container   # update with your ECS container name
+      # Change this to your ECS container name
+      - DOCKER_CONTAINER_NAME=skbiryani-container
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo "✅ imagedefinitions.json content:"
       - cat imagedefinitions.json
