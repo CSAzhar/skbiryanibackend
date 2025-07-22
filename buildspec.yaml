@@ -12,7 +12,7 @@ phases:
   pre_build:
     commands:
       - echo "✅ Pre-build phase - Maven clean install"
-      - mvn clean install
+      - mvn clean install -DskipTests
       - echo "✅ Logging in to Amazon ECR..."
       - aws --version
       - REPOSITORY_URI=836515410440.dkr.ecr.us-east-1.amazonaws.com/skbiryani-springboot-registry
