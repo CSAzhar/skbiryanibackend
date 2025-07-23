@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto21   # ✅ Use AWS CodeBuild's Corretto 21 runtime
+      java: corretto21   # ✅ Use AWS CodeBuild's Corretto 21 runtime test
     commands:
       - echo "✅ Install phase - Using Java version:"
       - java -version
