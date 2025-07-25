@@ -76,7 +76,7 @@ public class SecurityConfig {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOrigins(List.of("http://localhost:5173" ,
 											"http://localhost:3000", 
-											"https://skbadmin.s3.us-east-1.amazonaws.com",
+											"https://skbadmin2.s3.us-east-1.amazonaws.com",
 											"https://skbuser.s3.us-east-1.amazonaws.com"
 											));
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
