@@ -16,7 +16,7 @@ phases:
       - mvn clean install -DskipTests
       - echo "✅ Logging in to Amazon ECR..."
       - aws --version
-      # Replace this with your ECR repository URI
+      # Replace this with your ECR repository URI s
       - REPOSITORY_URI=836515410440.dkr.ecr.us-east-1.amazonaws.com/skbiryani-springboot-registry
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
       # Create tags
