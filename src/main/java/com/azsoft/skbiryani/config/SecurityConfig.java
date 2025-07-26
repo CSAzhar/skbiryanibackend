@@ -33,7 +33,7 @@ public class SecurityConfig {
 	
 	private final AppUserDetailService appUserDetailService;
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
-	
+	//test
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
