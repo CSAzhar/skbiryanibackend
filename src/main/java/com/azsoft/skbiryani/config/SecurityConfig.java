@@ -41,11 +41,11 @@ public class SecurityConfig {
 		.csrf(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests(auth -> auth.
 											requestMatchers("/skb/user/create-user", 
-															 "skb/user/login-email",
-															 "skb/user/login-otp",
-															 "skb/user/login-getotp",
-															  "skb/food/**",
-															  "skb/category/**",
+															 "/skb/user/login-email",
+															 "/skb/user/login-otp",
+															 "/skb/user/login-getotp",
+															  "/skb/food/**",
+															  "/skb/category/**",
 															  "/skb/order/all-admin"
 															  ).permitAll()
 											.requestMatchers(HttpMethod.PATCH, "/skb/order/*").permitAll()
