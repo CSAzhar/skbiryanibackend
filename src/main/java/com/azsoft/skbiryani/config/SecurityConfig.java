@@ -33,7 +33,7 @@ public class SecurityConfig {
 	
 	private final AppUserDetailService appUserDetailService;
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
-	
+	//test fake
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
@@ -41,11 +41,11 @@ public class SecurityConfig {
 		.csrf(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests(auth -> auth.
 											requestMatchers("/skb/user/create-user", 
-															 "skb/user/login-email",
-															 "skb/user/login-otp",
-															 "skb/user/login-getotp",
-															  "skb/food/**",
-															  "skb/category/**",
+															 "/skb/user/login-email",
+															 "/skb/user/login-otp",
+															 "/skb/user/login-getotp",
+															  "/skb/food/**",
+															  "/skb/category/**",
 															  "/skb/order/all-admin"
 															  ).permitAll()
 											.requestMatchers(HttpMethod.PATCH, "/skb/order/*").permitAll()
@@ -76,8 +76,12 @@ public class SecurityConfig {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOrigins(List.of("http://localhost:5173" ,
 											"http://localhost:3000", 
-											"https://skbadmin2.s3.us-east-1.amazonaws.com",
-											"https://skbuser.s3.us-east-1.amazonaws.com"
+											"http://skbuser.s3.us-east-1.amazonaws.com",
+											"https://skbuser.s3.us-east-1.amazonaws.com",
+											"http://skbadmin.s3.us-east-1.amazonaws.com",
+											"https://skbadmin.s3.us-east-1.amazonaws.com",
+						 					"https://skbiryani.shop",               
+						 					"https://www.skbiryani.shop" 
 											));
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 		config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
