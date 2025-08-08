@@ -43,6 +43,7 @@ public class SecurityConfig {
 											requestMatchers("/skb/user/create-user", 
 															 "/skb/user/login-email",
 															 "/skb/user/login-otp",
+															 "/ping",
 															 "/skb/user/login-getotp",
 															  "/skb/food/**",
 															  "/skb/category/**",
