@@ -13,6 +13,7 @@ public class TestApiController {
 	
 	@GetMapping
 	public ResponseEntity<String> testApiForAws(){
+		System.out.println("=======Checked health from ping=======");
 		return ResponseEntity.status(200).body("pong");
 	}
 
