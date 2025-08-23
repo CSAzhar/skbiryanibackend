@@ -2,6 +2,7 @@ package com.azsoft.skbiryani.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class CartController {
 	@Autowired
 	private CartServiceImpl cartService;
 
+	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PostMapping("add")
 	public ResponseEntity<CartResponse> addItemsToCart(@RequestBody CartRequest cartRequest){
 		CartResponse cartResponse = cartService.addToCart(cartRequest);

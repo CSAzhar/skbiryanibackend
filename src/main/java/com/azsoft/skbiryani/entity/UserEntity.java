@@ -1,6 +1,8 @@
 package com.azsoft.skbiryani.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +22,8 @@ public class UserEntity {
 	private String email;
 	private String mobile;
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
+    private Role role;
 
 }
