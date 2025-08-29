@@ -45,7 +45,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("login-getotp")
-	public ResponseEntity<?> getMobileOtp(){
+	public ResponseEntity<String> getMobileOtp(){
 		return null;
 	}
 	
