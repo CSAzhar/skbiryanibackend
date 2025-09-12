@@ -23,7 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import com.azsoft.skbiryani.filter.JwtAuthenticationFilter;
-import com.azsoft.skbiryani.service.CustomUserDetailsService;
+import com.azsoft.skbiryani.serviceImpl.CustomUserDetailsService;
 
 import lombok.AllArgsConstructor;
 
@@ -43,9 +43,9 @@ public class SecurityConfig {
 			.csrf(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/skb/user/create-user", 
-								 "/skb/user/login-email",
-								 "/skb/user/login-otp",
+								 "/skb/user/login-mob-pass",
 								 "/ping",
+								 "/skb/user/verify-otp",
 								 "/skb/user/login-getotp",
 								 "/skb/food/**",
 								 "/skb/category/**",
@@ -91,8 +91,7 @@ public class SecurityConfig {
 	
 	@Bean
 	public AuthenticationManager authenticationManager() {
-		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setUserDetailsService(customUserDetailsService); // ✅ using CustomUserDetailsService
+		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(customUserDetailsService);
 		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 		return new ProviderManager(daoAuthenticationProvider);
 	}

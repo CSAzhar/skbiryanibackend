@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.service;
+package com.azsoft.skbiryani.serviceImpl;
 
 import java.util.List;
 
@@ -7,19 +7,20 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.azsoft.skbiryani.config.AwsService;
+import com.azsoft.skbiryani.dto.FoodRequest;
+import com.azsoft.skbiryani.dto.FoodResponse;
 import com.azsoft.skbiryani.entity.Category;
 import com.azsoft.skbiryani.entity.FoodEntity;
-import com.azsoft.skbiryani.io.FoodRequest;
-import com.azsoft.skbiryani.io.FoodResponse;
 import com.azsoft.skbiryani.mapper.FoodMapper;
 import com.azsoft.skbiryani.repository.CategoryRepository;
 import com.azsoft.skbiryani.repository.FoodRepository;
+import com.azsoft.skbiryani.service.IFoodService;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FoodServiceImpl implements FoodService{
+public class FoodServiceImpl implements IFoodService{
 
     //private final S3Client s3Client;
 	

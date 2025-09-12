@@ -1,7 +1,7 @@
 package com.azsoft.skbiryani.service;
 
-import com.azsoft.skbiryani.io.CartRequest;
-import com.azsoft.skbiryani.io.security.CartResponse;
+import com.azsoft.skbiryani.dto.CartRequest;
+import com.azsoft.skbiryani.dto.CartResponse;
 
 public interface ICartService {
 	

@@ -1,7 +1,8 @@
 package com.azsoft.skbiryani.entity;
 
 import java.util.List;
-import com.azsoft.skbiryani.io.OrderItem;
+
+import com.azsoft.skbiryani.dto.OrderItem;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;

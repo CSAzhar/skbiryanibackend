@@ -1,15 +1,16 @@
-package com.azsoft.skbiryani.service;
+package com.azsoft.skbiryani.serviceImpl;
 
-import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.azsoft.skbiryani.entity.Role;
+import com.azsoft.skbiryani.dto.ResponseUserCreate;
+import com.azsoft.skbiryani.dto.UserCreateRequest;
 import com.azsoft.skbiryani.entity.UserEntity;
-import com.azsoft.skbiryani.io.security.ResponseUserCreate;
-import com.azsoft.skbiryani.io.security.UserCreateRequest;
 import com.azsoft.skbiryani.mapper.UserEntityMapper;
 import com.azsoft.skbiryani.repository.UserRepository;
+import com.azsoft.skbiryani.service.IAuthenticationFacade;
+import com.azsoft.skbiryani.service.IUserService;
 
 import lombok.AllArgsConstructor;
 
@@ -24,9 +25,8 @@ public class UserServiceImpl implements IUserService{
 	
 	@Override
 	public ResponseUserCreate registerUser(UserCreateRequest userCreateRequest) {
-		
+		userCreateRequest.setMobile("+91"+userCreateRequest.getMobile());
 		UserEntity user =  userMapper.requestUserEntityToUserEntity(userCreateRequest);
-		user.setRole(Role.USER);
 		UserEntity savedUser = userRepository.save(user);
 		ResponseUserCreate response = userMapper.userEntityToResponseUserCreate(savedUser);
 		return response;

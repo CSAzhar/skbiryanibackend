@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.service;
+package com.azsoft.skbiryani.serviceImpl;
 
 import java.util.List;
 

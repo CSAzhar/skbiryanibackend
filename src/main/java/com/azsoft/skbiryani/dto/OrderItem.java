@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io;
+package com.azsoft.skbiryani.dto;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io.security;
+package com.azsoft.skbiryani.dto;
 
 import lombok.Getter;
 

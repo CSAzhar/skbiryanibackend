@@ -1,4 +1,7 @@
-package com.azsoft.skbiryani.io.security;
+package com.azsoft.skbiryani.dto;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResponseUserCreate {
+public class CartRequest {
 	
-	private Long userId;
-	private String name;
-	private String email;
-	private String mobile;
+	private Long foodId;
+	
 
 }

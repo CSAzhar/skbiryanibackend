@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azsoft.skbiryani.io.security.ResponseUserCreate;
-import com.azsoft.skbiryani.io.security.UserCreateRequest;
-import com.azsoft.skbiryani.service.UserServiceImpl;
+import com.azsoft.skbiryani.dto.ResponseUserCreate;
+import com.azsoft.skbiryani.dto.UserCreateRequest;
+import com.azsoft.skbiryani.serviceImpl.UserServiceImpl;
 
 @RestController
 @RequestMapping("skb/user/")

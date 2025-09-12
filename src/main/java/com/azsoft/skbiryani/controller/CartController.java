@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azsoft.skbiryani.io.CartRequest;
-import com.azsoft.skbiryani.io.security.CartResponse;
-import com.azsoft.skbiryani.service.CartServiceImpl;
+import com.azsoft.skbiryani.dto.CartRequest;
+import com.azsoft.skbiryani.dto.CartResponse;
+import com.azsoft.skbiryani.serviceImpl.CartServiceImpl;
 
 @RestController
 @RequestMapping("/skb/cart/")

@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.service;
+package com.azsoft.skbiryani.serviceImpl;
 
 import com.azsoft.skbiryani.entity.UserEntity;
 import com.azsoft.skbiryani.repository.UserRepository;
@@ -22,8 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByEmail(email)
+    public UserDetails loadUserByUsername(String mobile) throws UsernameNotFoundException {
+        UserEntity user = userRepository.findByMobile(mobile)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         // Convert DB role -> Spring Security authority

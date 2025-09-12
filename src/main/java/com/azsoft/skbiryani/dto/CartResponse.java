@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io;
+package com.azsoft.skbiryani.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CartRequest {
+public class CartResponse {
 	
-	private Long foodId;
+	private Long id;
+	private Long userId;
+	private Map<Long, Integer> items = new HashMap<>();
+	
+	private Integer statusCode;
+	private String message;
 	
 
 }
