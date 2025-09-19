@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.azsoft.skbiryani.entity.Category;
-import com.azsoft.skbiryani.service.CategoryService;
+import com.azsoft.skbiryani.serviceImpl.CategoryService;
 
 import lombok.AllArgsConstructor;
 

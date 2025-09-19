@@ -3,9 +3,9 @@ package com.azsoft.skbiryani.mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.azsoft.skbiryani.dto.OrderRequest;
+import com.azsoft.skbiryani.dto.OrderResponse;
 import com.azsoft.skbiryani.entity.OrderEntity;
-import com.azsoft.skbiryani.io.OrderRequest;
-import com.azsoft.skbiryani.io.OrderResponse;
 
 @Component
 public class OrderMapper {

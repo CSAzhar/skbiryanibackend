@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io.security;
+package com.azsoft.skbiryani.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class ResponseAuthenticationEmail {
+public class ResponseAuthenticationMobilePassword {
 	
-	private String email;
+	private String mobile;
 	private String token;
 
 }

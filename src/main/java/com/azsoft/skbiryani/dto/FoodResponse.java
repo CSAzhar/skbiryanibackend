@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io;
+package com.azsoft.skbiryani.dto;
 
 import com.azsoft.skbiryani.entity.Category;
 

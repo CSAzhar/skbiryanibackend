@@ -1,7 +1,7 @@
 package com.azsoft.skbiryani.service;
 
-import com.azsoft.skbiryani.io.security.ResponseUserCreate;
-import com.azsoft.skbiryani.io.security.UserCreateRequest;
+import com.azsoft.skbiryani.dto.ResponseUserCreate;
+import com.azsoft.skbiryani.dto.UserCreateRequest;
 
 public interface IUserService {
 

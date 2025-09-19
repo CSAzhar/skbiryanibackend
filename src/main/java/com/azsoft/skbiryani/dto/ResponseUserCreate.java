@@ -1,17 +1,19 @@
-package com.azsoft.skbiryani.io.security;
+package com.azsoft.skbiryani.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateRequest {
+@Builder
+public class ResponseUserCreate {
 	
+	private Long userId;
 	private String name;
 	private String email;
 	private String mobile;
-	private String password;
 
 }

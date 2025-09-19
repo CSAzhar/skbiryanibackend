@@ -2,10 +2,10 @@ package com.azsoft.skbiryani.mapper;
 
 import org.springframework.stereotype.Service;
 
+import com.azsoft.skbiryani.dto.FoodRequest;
+import com.azsoft.skbiryani.dto.FoodResponse;
 import com.azsoft.skbiryani.entity.Category;
 import com.azsoft.skbiryani.entity.FoodEntity;
-import com.azsoft.skbiryani.io.FoodRequest;
-import com.azsoft.skbiryani.io.FoodResponse;
 
 @Service
 public class FoodMapper {

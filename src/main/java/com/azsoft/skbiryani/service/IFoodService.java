@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.azsoft.skbiryani.io.FoodRequest;
-import com.azsoft.skbiryani.io.FoodResponse;
+import com.azsoft.skbiryani.dto.FoodRequest;
+import com.azsoft.skbiryani.dto.FoodResponse;
 
-public interface FoodService {
+public interface IFoodService {
 	
 //	String uploadFile(MultipartFile file);
 	FoodResponse addFood(FoodRequest foodRequest, MultipartFile file, Long categoryId);

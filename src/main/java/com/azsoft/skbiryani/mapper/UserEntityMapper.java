@@ -6,27 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.azsoft.skbiryani.dto.ResponseUserCreate;
+import com.azsoft.skbiryani.dto.UserCreateRequest;
 import com.azsoft.skbiryani.entity.UserEntity;
-import com.azsoft.skbiryani.io.security.ResponseUserCreate;
-import com.azsoft.skbiryani.io.security.UserCreateRequest;
 import com.azsoft.skbiryani.repository.UserRepository;
 
 @Component
 public class UserEntityMapper {
 	
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	public UserEntity requestUserEntityToUserEntity(UserCreateRequest request) {
-		Long userId;
-		do {
-			userId = generateRandomUserId();
-		} while (userRepository.existsById(userId));
-		
+//		Long userId;
+//		do {
+//			userId = generateRandomUserId();
+//		} while (userRepository.existsById(userId));
+//		
 		 return UserEntity.builder()
-		.userId(userId)
+//		.userId(userId)
 		.name(request.getName())
 		.email(request.getEmail())
 		.mobile(request.getMobile())

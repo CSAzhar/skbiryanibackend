@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.service;
+package com.azsoft.skbiryani.serviceImpl;
 
 import java.util.Collections;
 
@@ -21,9 +21,9 @@ public class AppUserDetailService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity user = userRepository.findByEmail(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User Not found By Email"));
-		return new User(user.getEmail(), user.getPassword(), Collections.emptyList());
+		UserEntity user = userRepository.findByMobile(username)
+				.orElseThrow(() -> new UsernameNotFoundException("User Not found By Mobile"));
+		return new User(user.getMobile(), user.getPassword(), Collections.emptyList());
 	}
 	
 

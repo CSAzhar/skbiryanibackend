@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azsoft.skbiryani.io.OrderRequest;
-import com.azsoft.skbiryani.io.OrderResponse;
+import com.azsoft.skbiryani.dto.OrderRequest;
+import com.azsoft.skbiryani.dto.OrderResponse;
 import com.azsoft.skbiryani.service.IOrderService;
 
 import lombok.AllArgsConstructor;

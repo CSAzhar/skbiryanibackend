@@ -2,8 +2,9 @@ package com.azsoft.skbiryani.service;
 
 import java.util.List;
 import java.util.Map;
-import com.azsoft.skbiryani.io.OrderRequest;
-import com.azsoft.skbiryani.io.OrderResponse;
+
+import com.azsoft.skbiryani.dto.OrderRequest;
+import com.azsoft.skbiryani.dto.OrderResponse;
 import com.razorpay.RazorpayException;
 
 public interface IOrderService {

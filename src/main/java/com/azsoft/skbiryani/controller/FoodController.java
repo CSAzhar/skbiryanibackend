@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.azsoft.skbiryani.io.FoodRequest;
-import com.azsoft.skbiryani.io.FoodResponse;
-import com.azsoft.skbiryani.service.FoodServiceImpl;
+import com.azsoft.skbiryani.dto.FoodRequest;
+import com.azsoft.skbiryani.dto.FoodResponse;
+import com.azsoft.skbiryani.serviceImpl.FoodServiceImpl;
 
 import lombok.AllArgsConstructor;
 

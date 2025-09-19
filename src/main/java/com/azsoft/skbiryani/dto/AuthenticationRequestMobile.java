@@ -1,4 +1,4 @@
-package com.azsoft.skbiryani.io.security;
+package com.azsoft.skbiryani.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequestMobileOTPVerify {
+public class AuthenticationRequestMobile {
 	
 	private String mobile;
-	private String otp;
+	private String password;
 
 }
