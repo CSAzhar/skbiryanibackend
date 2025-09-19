@@ -1,5 +1,6 @@
 package com.azsoft.skbiryani.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
@@ -11,12 +12,14 @@ import com.twilio.type.PhoneNumber;
 @Service
 public class TwilioSMSProvider implements IOtpSMSProvider{
 
-	public static final String ACCOUNT_SID = "AC843957377afe4f9187849f257f949efc";
-	public static final String AUTH_TOKEN = "ba3dc0adc7434a3c6c32540673c692f4";
+	@Value("${twilio_account_sid}")
+	public String ACCOUNT_SID;
+	@Value("${twilio_auth_token}")
+	public String AUTH_TOKEN;
 	
 	@Override
 	public String sendOtpSMS(String mobile, String message) {
-//		sendMessageByTwilio(mobile, message);
+		sendMessageByTwilio(mobile, message);
 		return "sent";
 	}
 	
@@ -25,7 +28,6 @@ public class TwilioSMSProvider implements IOtpSMSProvider{
 	public void sendMessageByTwilio(String mobile, String inputMessage) {
 		PhoneNumber to = new PhoneNumber(mobile);
 		PhoneNumber from = new PhoneNumber("+14434023159");
-		
 	    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 	    Message message = Message.creator(to, from, inputMessage).create();
 	    
