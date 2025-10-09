@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,18 +34,19 @@ public class AuthController {
 	private final JwtUtil jwtUtil;
 	
 	@PostMapping("login-mob-pass")
-	public ResponseEntity<ResponseAuthenticationMobilePassword> loginMail(@RequestBody AuthenticationRequestMobile requestMobile){
-		
+	public ResponseEntity<ResponseAuthenticationMobilePassword> loginMail(@RequestBody AuthenticationRequestMobile authMobilePass){
+		String requestMobile = "+91"+authMobilePass.getMobile();
 		authenticationManager
-			.authenticate(new UsernamePasswordAuthenticationToken(requestMobile.getMobile(), requestMobile.getPassword()));
+			.authenticate(new UsernamePasswordAuthenticationToken(requestMobile, authMobilePass.getPassword()));
 		
-		final UserDetails userDetails = userDetailService.loadUserByUsername(requestMobile.getMobile());
+		final UserDetails userDetails = userDetailService.loadUserByUsername(requestMobile);
+		
 
 		final String jwtToken = jwtUtil.generateJwtToken(userDetails);
 		
 		return ResponseEntity.ok().body(ResponseAuthenticationMobilePassword
 				.builder()
-				.mobile(requestMobile.getMobile())
+				.mobile(requestMobile)
 				.token(jwtToken)
 				.build());
 	}
