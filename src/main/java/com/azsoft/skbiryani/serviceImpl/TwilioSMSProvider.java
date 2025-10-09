@@ -19,7 +19,7 @@ public class TwilioSMSProvider implements IOtpSMSProvider{
 	
 	@Override
 	public String sendOtpSMS(String mobile, String message) {
-		sendMessageByTwilio(mobile, message);
+		//sendMessageByTwilio(mobile, message);
 		return "sent";
 	}
 	

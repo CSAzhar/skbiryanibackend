@@ -27,5 +27,6 @@ public class AWSConfig {
 				.credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey)))
 				.build();
 	}
+    
 
 }
